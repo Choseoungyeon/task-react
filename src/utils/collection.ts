@@ -32,8 +32,23 @@ export function pluckTitles(tasks: SimpleTask[]): string[] {
 export function highPriorityFirst(tasks: SimpleTask[]): SimpleTask[] {
   const order = { high: 0, medium: 1, low: 2 } as const
   // lodash.sortBy 또는 Array.prototype.sort 를 사용할 수 있습니다.
+  // const Obj: {high:SimpleTask[], medium:SimpleTask[], low:SimpleTask[], none:SimpleTask[]} = {high:[], medium:[], low:[]};
+  const sortTasks = tasks.sort((a,b)=>{
+    let aOrder :number = 0;
+    let bOrder :number = 0;
+
+    if(a.priority && b.priority){
+      aOrder = order[a.priority];
+      bOrder = order[b.priority];
+    } else{
+      if(!a.priority) aOrder = 3;
+      if(!b.priority) bOrder = 3;
+    }
+
+    return aOrder - bOrder
+  })
   // 구현하세요.
-  return tasks
+  return sortTasks
 }
 
 // TODO 03: (기초) done 상태로 groupBy 하여 { true: SimpleTask[]; false: SimpleTask[] } 형태를 만드세요.

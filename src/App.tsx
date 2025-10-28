@@ -9,7 +9,6 @@ function App() {
   const [selectedProjectId, setSelectedProjectId] = useState<
     string | undefined
   >(undefined);
-  // test용 함수;
 
   return (
     <div

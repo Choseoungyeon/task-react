@@ -54,6 +54,8 @@ export function highPriorityFirst(tasks: SimpleTask[]): SimpleTask[] {
 // TODO 03: (기초) done 상태로 groupBy 하여 { true: SimpleTask[]; false: SimpleTask[] } 형태를 만드세요.
 export function groupByDone(tasks: SimpleTask[]): Record<'true' | 'false', SimpleTask[]> {
   // 힌트: lodash.groupBy 사용 가능
+  
+  const result = Object.groupBy(tasks, ({ done }) => done ? 'true' : 'false');
   // 구현하세요.
-  return { true: [], false: [] }
+  return result;
 }
